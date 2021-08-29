@@ -38,6 +38,7 @@ import ssl
 import argparse
 import time
 import random
+import string
 import urllib.parse
 from sys import stdout, stderr
 
@@ -239,7 +240,7 @@ def main():
          print("Sending byte in HTTP POST body... Socket count: " + str(len(list_of_sockets)))
          for s in list(list_of_sockets):
             try:
-               char = chr(random.randint(39, 126))
+               char = random.choice(string.digits + string.ascii_letters)
                s.send(char.encode("utf-8"))
             except socket.error:
                list_of_sockets.remove(s)
