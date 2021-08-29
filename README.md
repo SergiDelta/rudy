@@ -10,6 +10,8 @@ Linux:
 Windows:
   
 `python rudy.py --help`
+## Disclaimer
+Please, use this code for educational purposes only. I am not responsible for any malicious use that may be made of it.
 ## License & copyright
 © Sergio Garcia Lopez
 
