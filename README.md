@@ -10,6 +10,8 @@ Linux:
 Windows:
   
 `python rudy.py --help`
+## Example
+![usage_example](https://user-images.githubusercontent.com/63166659/131248667-88827dd6-eb02-4322-a329-a4f8f1a0ec01.png)
 ## Disclaimer
 Please, use this code for educational purposes only. I am not responsible for any malicious use that may be made of it.
 ## License & copyright
