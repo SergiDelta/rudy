@@ -5,4 +5,5 @@ RUDY is a "low and slow" attack which generates low traffic in order to make eac
 ## Usage
 python3 rudy.py [flags] [target_url]
 ## License & copyright
+© Sergio Garcia Lopez
 Licensed under the [MIT License](LICENSE)
