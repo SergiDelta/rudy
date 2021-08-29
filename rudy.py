@@ -68,7 +68,7 @@ def print_rudy():
    print("  | |\ \  | |_| | | |/ /| |___| | | | |/ /    | | | |___  | |  |_|  ")
    print("  \_| \_|  \___/  |___/ \____/\_| |_/___/     \_/ \____/  \_/  (_)  ")
    print()
-   print("            rudy 1.0 (https://github.com/SergiDelta/rudy)           ")
+   print("            rudy 1.0 https://github.com/SergiDelta/rudy             ")
    print()
 
 
@@ -95,7 +95,7 @@ def generate_http_req(method, path, headers, version="HTTP/1.1"):
 def cli():
    parser = argparse.ArgumentParser(
       prog="rudy",
-      description="%(prog)s 1.0 (https://github.com/SergiDelta/rudy). " + 
+      description="%(prog)s 1.0 https://github.com/SergiDelta/rudy . " + 
       "Implementation of R.U.D.Y (Are you dead yet?) " + 
       "Denial of Service attack in Python."
    )
@@ -126,7 +126,7 @@ def cli():
    parser.add_argument(
       "--version",
       action="version",
-      version="%(prog)s version 1.0 (https://github.com/SergiDelta/rudy)."
+      version="%(prog)s version 1.0 https://github.com/SergiDelta/rudy ."
    )
    parser.add_argument(
       "url",
