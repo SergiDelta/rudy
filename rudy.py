@@ -34,13 +34,14 @@
 
 
 import socket
+import socks 
 import ssl
 import argparse
 import time
 import random
 import string
 import urllib.parse
-from sys import stdout, stderr
+import sys
 
 
 class Logger:
@@ -50,14 +51,14 @@ class Logger:
    def set_verbosity(self, verbosity):
       self.verbose = verbosity
 
-   def log(self, message, file=stdout):
+   def log(self, message, file=sys.stdout):
       if self.verbose:
          print(message, file=file)
 
-   def warn(self, message, file=stderr):
+   def warn(self, message, file=sys.stderr):
       print(f"WARNING: {message}", file=file)
 
-   def error(self, message, file=stderr):
+   def error(self, message, file=sys.stderr):
       print(f"ERROR: {message}", file=file)
 
 
@@ -74,7 +75,7 @@ def print_rudy():
 
 
 def init_socket(host, port, tls=False, timeout=5):
-   sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   sock = socks.socksocket()
    sock.settimeout(timeout)
    if tls:
       ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
@@ -120,6 +121,10 @@ def cli():
       help="Content-Length value (bytes) in HTTP POST request. Default is 64."
    )
    parser.add_argument(
+      "-x", "--proxy",
+      help="Send requests through a proxy, e.g: 127.0.0.1:8080"
+   )
+   parser.add_argument(
       "-v", "--verbose",
       action="store_true",
       help="Give details about actions being performed."
@@ -140,12 +145,13 @@ def cli():
 def main():
    try:
       args = cli()
-      print_rudy()
       url = urllib.parse.urlparse(args.url)
       host = url.netloc
       file_path = ""
       port = 80
       tls = False
+      proxy = args.proxy
+      logger = Logger(args.verbose)
 
       if url.scheme == "https":
          tls = True
@@ -169,8 +175,24 @@ def main():
 
       if file_path == "":
          file_path = "/"
-      
-      logger = Logger(args.verbose)     
+
+      if proxy:
+         if proxy.find(":") == -1:
+            logger.error("Invalid format for proxy address")
+            sys.exit(1)
+         else:
+            try:
+               proxy = proxy.split(":")
+               proxy[1] = int(proxy[1])
+               socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, proxy[0], proxy[1], True)
+            except:
+               logger.error("Can not set default proxy to " + args.proxy)
+               sys.exit(1)
+         
+
+      print_rudy()
+      if proxy:
+         print("Using proxy: " + args.proxy)
       socket_count = args.sockets
       round_time = args.time
       content_length = args.length
