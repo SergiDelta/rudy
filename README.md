@@ -4,10 +4,8 @@ Implementation of R.U.D.Y (Are you dead yet?) Denial of Service attack in Python
 RUDY is a "low and slow" attack which generates low traffic in order to make each HTTP POST request last around 10 minutes. It basically fills a form but sends the body of the request byte by byte, waiting several seconds after each one. In this way, we simulate that we are a client with very little bandwith. If we do this distributedly, we may exhaust the available server connections, making it impossible for a legitimate client to connect.
 ## Usage
 ```
-usage: rudy [-h] [-s SOCKETS] [-t TIME] [-l LENGTH] [-v] [--version] url
-
-rudy 1.0 https://github.com/SergiDelta/rudy . Implementation of R.U.D.Y (Are you dead yet?) Denial
-of Service attack in Python.
+rudy 1.0 https://github.com/SergiDelta/rudy . Implementation of R.U.D.Y (Are you dead yet?) Denial of Service
+attack in Python.
 
 positional arguments:
   url                   Absolute path to website, i.e [http[s]://]host[:port][file_path]
@@ -16,10 +14,12 @@ optional arguments:
   -h, --help            show this help message and exit
   -s SOCKETS, --sockets SOCKETS
                         Number of sockets (connections) to use. Default is 150.
-  -t TIME, --time TIME  Period of time in seconds that the program will wait before performing
-                        another round of byte sending. Default is 10.
+  -t TIME, --time TIME  Period of time in seconds that the program will wait before performing another round of
+                        byte sending. Default is 10.
   -l LENGTH, --length LENGTH
                         Content-Length value (bytes) in HTTP POST request. Default is 64.
+  -x PROXY, --proxy PROXY
+                        Send requests through a proxy, e.g: 127.0.0.1:8080
   -v, --verbose         Give details about actions being performed.
   --version             show program's version number and exit
 ```
