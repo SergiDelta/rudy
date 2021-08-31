@@ -13,7 +13,7 @@
 #                                                                #
 #  Version: 1.0                                                  #
 #                                                                #
-#  Description: Implementation of R.U.D.Y (Are you dead yet?)    #
+#  Description: Implementation of RUDY (Are you dead yet?)       #
 #               Denial of Service attack in Python. It is a      #
 #               "low and slow" attack which generates low        #
 #               traffic in order to make each HTTP POST request  #
