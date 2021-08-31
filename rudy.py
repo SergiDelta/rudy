@@ -77,11 +77,11 @@ def print_rudy():
 def init_socket(host, port, tls=False, timeout=5):
    sock = socks.socksocket()
    sock.settimeout(timeout)
+   sock.connect((host, port))
    if tls:
       ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
       ctx.load_default_certs()
       sock = ctx.wrap_socket(sock)
-   sock.connect((host, port))
 
    return sock
 
