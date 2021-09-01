@@ -6,7 +6,7 @@ RUDY is a "low and slow" attack which generates low traffic in order to make eac
 ```
 usage: rudy [-h] [-s SOCKETS] [-t TIME] [-l LENGTH] [-x PROXY] [-v] [--version] url
 
-rudy 1.0 https://github.com/SergiDelta/rudy . Implementation of R.U.D.Y (Are you dead yet?)
+rudy 1.1 https://github.com/SergiDelta/rudy . Implementation of RUDY (Are you dead yet?)
 Denial of Service attack in Python.
 
 positional arguments:
@@ -21,7 +21,7 @@ optional arguments:
   -l LENGTH, --length LENGTH
                         Content-Length value (bytes) in HTTP POST request. Default is 64.
   -x PROXY, --proxy PROXY
-                        Send requests through a proxy, e.g: 127.0.0.1:8080
+                        Send requests through a Socks5 proxy, e.g: 127.0.0.1:1080
   -v, --verbose         Give details about actions being performed.
   --version             show program's version number and exit
 ```
