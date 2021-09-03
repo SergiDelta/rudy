@@ -377,7 +377,7 @@ def main():
          if bytes_per_round == 1:
             print("Sending byte in HTTP POST body... Socket count: " + str(len(list_of_sockets)))
          else:
-            print("Sending " + str(bytes_per_round) + " bytes in HTTP POST body... Socket count: " + str(len(list_of_sockets)))
+            print("Sending bytes in HTTP POST body... Socket count: " + str(len(list_of_sockets)))
          for s in list(list_of_sockets):
             try:
                msg = ""
