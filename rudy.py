@@ -206,6 +206,7 @@ def main():
       content_length = args.length
 
       list_of_sockets = []
+      ascii_chars = string.digits + string.ascii_letters
       host_header = "Host: " + host
       user_agents = [
          "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
@@ -376,10 +377,10 @@ def main():
          print("Sending byte in HTTP POST body... Socket count: " + str(len(list_of_sockets)))
          for s in list(list_of_sockets):
             try:
-               char = ""
+               msg = ""
                for i in range(bytes_per_round):
-                  char += random.choice(string.digits + string.ascii_letters)
-               s.send(char.encode("utf-8"))
+                  msg += random.choice(ascii_chars)
+               s.send(msg.encode("utf-8"))
             except socket.error:
                list_of_sockets.remove(s)
 
